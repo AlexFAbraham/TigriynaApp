@@ -50,11 +50,11 @@ export default function App() {
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
     <NavigationContainer>
      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Phrases" component={Phrases}/>
-        <Stack.Screen name="Dictionary" component={Dictionary}/>
-        <Stack.Screen name="Numbers" component={Numbers}/>
-        <Stack.Screen name="Alphabet" component={Alphabet}/>
+        <Stack.Screen name="Home" component={Home} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: '#f8f8f8'}, headerShadowVisible: false}} />
+        <Stack.Screen name="Phrases" component={Phrases} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{backgroundColor: '#f8f8f8'}, headerShadowVisible: false}}/>
+        <Stack.Screen name="Dictionary" component={Dictionary} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: '#f8f8f8'}, headerShadowVisible: false}}/>
+        <Stack.Screen name="Numbers" component={Numbers} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: '#f8f8f8'}, headerShadowVisible: false}}/>
+        <Stack.Screen name="Alphabet" component={Alphabet} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: '#f8f8f8'}, headerShadowVisible: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
     </IconComponentProvider>
