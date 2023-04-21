@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, createContext, useContext} from 'react';
+import React, {useState, useEffect, useRef, createContext} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,10 +11,8 @@ import Phrases from './pages/Phrases';
 import Numbers from './pages/Numbers';
 import Alphabet from './pages/Alphabet';
 
-
-
-
-
+export const ToggleContext = createContext();
+export const HideContext = createContext();
 function Home({navigation}) {
   
 
@@ -54,14 +52,18 @@ function Home({navigation}) {
 export default function App() {
   
   const Stack = createNativeStackNavigator();
-  const [toggleNumbers, setToggleNumbers] = useState(false);
-  const [hideNumbers, setHideNumbers] = useState(false);
+ 
+  const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [hideValues, setHideValues] = useState(false);
+
+ 
  
   
 
 
   return (
-    
+    <HideContext.Provider value={hideValues}> 
+    <ToggleContext.Provider value={toggleSwitch}>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
     <NavigationContainer>
      <Stack.Navigator >
@@ -70,16 +72,17 @@ export default function App() {
         <Stack.Screen name="Dictionary" component={Dictionary} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: 'white'}, headerShadowVisible: false}}/>
         <Stack.Screen name="Numbers" component={Numbers} options={{ headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: 'white'}, headerShadowVisible: false,
          headerRight: () => (<SafeAreaView style={styles.toggles}>
-          <Icon name={ toggleNumbers ? "toggle-switch" :"toggle-switch-off-outline"} size={30} color="black" onPress={()=> {setToggleNumbers(!toggleNumbers) }} style={{paddingRight: '5%'}}/>
-          <Icon name={ hideNumbers ? "eye-off" :"eye-outline"} onPress={()=> {setHideNumbers(!hideNumbers) }} size={30} color="black"/>
+          <Icon name={ toggleSwitch ? "toggle-switch" :"toggle-switch-off-outline"} size={30} color="black" onPress={()=> setToggleSwitch(!toggleSwitch)} style={{paddingRight: '5%'}}/>
+          <Icon name={ hideValues ? "eye-off" :"eye-outline"} onPress={()=> {setHideValues(!hideValues) }} size={30} color="black"/>
           </SafeAreaView>)
       }}/>
         <Stack.Screen name="Alphabet" component={Alphabet} options={{headerTitleStyle:{fontWeight: 'bold', fontSize: 20}, headerStyle:{ backgroundColor: 'white'}, headerShadowVisible: false}}/>
       </Stack.Navigator>
      
     </NavigationContainer>
-    </IconComponentProvider>
-   
+    </IconComponentProvider>  
+    </ToggleContext.Provider>
+    </HideContext.Provider>
   );
 }
 

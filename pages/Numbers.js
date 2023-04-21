@@ -3,12 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { ListItem } from "@react-native-material/core";
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-
+import { ToggleContext, HideContext } from '../App';  
 export default function Numbers() {
 
-
-  const [toggleNumbers, setToggleNumbers] = useState(false);
-  const [hideNumbers, setHideNumbers] = useState(false);  
+  const toggleNumbers = useContext(ToggleContext); 
+  const hideNumbers = useContext(HideContext || false)
   const [starClick, setStarClick] = useState(false);
 
   const [listofNumbers, setListofNumbers] = useState([
@@ -29,14 +28,15 @@ export default function Numbers() {
   starClick ?
   setStarClick(false) : null
 
- console.log(toggleNumbers)
+ console.log("toggle:" + toggleNumbers);
+ console.log("hide:" + hideNumbers)
   
 
  })
 
   function selectStar(index){
     listofNumbers[index].selected = !listofNumbers[index].selected;
-    setListofNumbers(listofNumbers)
+    setListofNumbers(listofNumbers);
 
    
   }
