@@ -1,13 +1,17 @@
-import { StyleSheet, Text, FlatList, TouchableHighlight, View, SafeAreaView } from 'react-native'
-import React, { useState, useEffect, useContext } from 'react'
+import { StyleSheet, FlatList, View } from 'react-native'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import { ListItem } from "@react-native-material/core";
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { ToggleContext, HideContext } from '../App';  
+
+export const listofNumbersContext = createContext();
+
 export default function Numbers() {
 
   const toggleNumbers = useContext(ToggleContext); 
-  const hideNumbers = useContext(HideContext || false)
+  const previousList = useContext(listofNumbersContext);
+  const hideNumbers = useContext(HideContext)
   const [starClick, setStarClick] = useState(false);
 
   const [listofNumbers, setListofNumbers] = useState([
@@ -21,15 +25,26 @@ export default function Numbers() {
     {e: '8', t:  "Shemonte", selected: false}, 
     {e: '9', t:  "Tishe'ate", selected: false},
     {e: '10', t:  "Aserte", selected: false}, 
+
+    {e: '20', t:  "äsra", selected: false},
+    {e: '30', t:  "selasa", selected: false},
+    {e: '40', t:  "’ärb‘ä", selected: false}, 
+    {e: '50', t:  "hamsa", selected: false}, 
+    {e: '60', t:  "susa", selected: false}, 
+    {e: '70', t:  "seb‘ä", selected: false},
+    {e: '80', t:  "semanya", selected: false}, 
+    {e: '90', t:  "ties‘ä", selected: false}, 
+    {e: '100', t:  "mie’äti", selected: false},
+    {e: '1000', t:  "sheh/’älfi", selected: false}, 
+    {e: '1 million ', t:  "milyon", selected: false}, 
     
   ])
   
  useEffect(() => {
+
+
   starClick ?
   setStarClick(false) : null
-
- console.log("toggle:" + toggleNumbers);
- console.log("hide:" + hideNumbers)
   
 
  })
@@ -38,6 +53,7 @@ export default function Numbers() {
     listofNumbers[index].selected = !listofNumbers[index].selected;
     setListofNumbers(listofNumbers);
 
+    console.log(listofNumbers)
    
   }
 
